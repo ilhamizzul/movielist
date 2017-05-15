@@ -1,7 +1,7 @@
 ## MovieList
 * Nama Paket : id.sch.smktelkom_mlg.privateassignment.xirpl210.mydailywth
 * Link File APK :
-https://github.com/ilhamizzul/movielist/blob/master/additional/id.sch.smktelkom_mlg.privateassignment.xirpl210.mydailywth(release).apk
+-
 
 ## Identitas
 * Nama  : Ilham Izzul Hadyan
