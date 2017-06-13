@@ -6,15 +6,8 @@
     android:background="?android:attr/selectableItemBackground"
     android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="80dp"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        tools:src="@mipmap/ic_launcher" />
-
     <TextView
-        android:id="@+id/textViewName"
+        android:id="@+id/viewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -29,26 +22,15 @@
         tools:text="Judul" />
 
     <TextView
-        android:id="@+id/textViewDesc"
+        android:id="@+id/viewDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textViewName"
-        android:layout_alignStart="@+id/textViewName"
-        android:layout_below="@+id/textViewName"
+        android:layout_alignLeft="@+id/viewTitle"
+        android:layout_alignStart="@+id/viewTitle"
+        android:layout_below="@+id/viewTitle"
         android:ellipsize="end"
         android:maxLines="4"
         android:textColor="@android:color/black"
         tools:text="Deskripsi" />
 
-    <TextView
-        android:id="@+id/textViewOptions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:text="&#8942;"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:textColor="@android:color/darker_gray" />
 </RelativeLayout>
-

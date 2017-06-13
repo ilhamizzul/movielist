@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import id.sch.smktelkom_mlg.privateassignment.xirpl210.mydailywth.fragment.SavedFragment;
 import id.sch.smktelkom_mlg.privateassignment.xirpl210.mydailywth.fragment.SoonFragment;
 import id.sch.smktelkom_mlg.privateassignment.xirpl210.mydailywth.fragment.fragment_now;
 
@@ -143,6 +144,9 @@ public class MainActivity extends AppCompatActivity {
             } else if (position == 1) {
                 setTheme(R.style.AppTheme_Green);
                 return new SoonFragment();
+            } else if (position == 2) {
+                setTheme(R.style.AppTheme_Green);
+                return new SavedFragment();
             } else {
                 return PlaceholderFragment.newInstance(position + 1);
             }
@@ -151,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 2;
+            return 3;
         }
 
         @Override
@@ -161,6 +165,8 @@ public class MainActivity extends AppCompatActivity {
                     return "Now Playing";
                 case 1:
                     return "Coming Soon";
+                case 2:
+                    return "Saved";
             }
             return null;
         }

@@ -1,17 +1,21 @@
 package id.sch.smktelkom_mlg.privateassignment.xirpl210.mydailywth.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import id.sch.smktelkom_mlg.privateassignment.xirpl210.mydailywth.DatabaseHelper;
 import id.sch.smktelkom_mlg.privateassignment.xirpl210.mydailywth.R;
 import id.sch.smktelkom_mlg.privateassignment.xirpl210.mydailywth.model.Source;
 
@@ -40,14 +44,45 @@ public class SourceAdapter extends RecyclerView.Adapter<SourceAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Source source = list.get(position);
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        final Source source = list.get(position);
         holder.tvName.setText(source.title);
         holder.tvDesc.setText(source.overview);
         //holder.itemView.setBackgroundColor(source.color);
         Glide.with(context)
                 .load(IMAGE_URL_BASE_PATH + source.poster_path)
                 .into(holder.ivPoster);
+        holder.buttonViewOption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //creating a popup menu
+                PopupMenu popup = new PopupMenu(context, holder.buttonViewOption);
+                //inflating menu from xml resource
+                popup.inflate(R.menu.menu_save);
+                //adding click listener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.menu1:
+                                String title = source.title;
+                                String desc = source.overview;
+//                                Toast.makeText(context, "Halo " + String.valueOf(position) + title + desc, Toast.LENGTH_SHORT).show();
+                                DatabaseHelper db = new DatabaseHelper(context);
+                                if (db.saveMovie(title, desc)) {
+                                    Toast.makeText(context, "Berhasil menyimpan", Toast.LENGTH_SHORT).show();
+                                }
+                                break;
+                        }
+                        return false;
+                    }
+                });
+                //displaying the popup
+                popup.show();
+
+            }
+        });
+
     }
 
     @Override
@@ -65,12 +100,15 @@ public class SourceAdapter extends RecyclerView.Adapter<SourceAdapter.ViewHolder
         ImageView ivPoster;
         TextView tvName;
         TextView tvDesc;
+        TextView buttonViewOption;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tvName = (TextView) itemView.findViewById(R.id.textViewName);
             tvDesc = (TextView) itemView.findViewById(R.id.textViewDesc);
             ivPoster = (ImageView) itemView.findViewById(R.id.imageView);
+            buttonViewOption = (TextView) itemView.findViewById(R.id.textViewOptions);
+
 //            itemView.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
